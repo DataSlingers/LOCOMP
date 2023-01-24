@@ -11,24 +11,17 @@ def DecisionTreeReg(X,Y,X1):
     tree = DecisionTreeRegressor().fit(X,Y)
     return tree.predict(X1)
 def ridgecv(X,Y,X1):
-    clf = RidgeCV(alphas=[1e-3, 1e-2, 1e-1, 1], fit_intercept = False).fit(X, Y)
-    # named ridge2 to distinguish it from the ridge regressor in sklearn.
-    
+    clf = RidgeCV(alphas=[1e-3, 1e-2, 1e-1, 1], fit_intercept = False).fit(X, Y)    
     return clf.predict(X1)
 
 def ridge2(X,Y,X1):
-    clf = Ridge(fit_intercept = False,alpha=0.001).fit(X, Y)
-    # named ridge2 to distinguish it from the ridge regressor in sklearn.
-    
+    clf = Ridge(fit_intercept = False,alpha=0.001).fit(X, Y)    
     return clf.predict(X1)
 
 def RFreg(X,Y,X1):
-    # when bootstrap=False, it means each tree is trained on all rows of X and only
-    #      subsamples its columns (which are features).
     rf = RandomForestRegressor(n_estimators=200,criterion='mse',bootstrap=False).fit(X,Y)
     return rf.predict(X1)
 
-# kernel svm 
 def kernelSVR(X,Y,X1):
     krr = SVR(kernel='rbf',C=1000).fit(X, Y)
     return krr.predict(X1)
@@ -44,18 +37,17 @@ from sklearn.ensemble import RandomForestClassifier
 from  sklearn.linear_model import LogisticRegression
 from sklearn.linear_model import LogisticRegressionCV
 def logitridge(X,Y):
-    reg=LogisticRegression(penalty='l2',solver='saga',max_iter=10,C = 1000).fit(X,Y)
-    return reg
-# Define Baseline Regressor to be used later
+    fit=LogisticRegression(penalty='l2',solver='saga',max_iter=10,C = 1000).fit(X,Y)
+    return fit
+
 def DecisionTreeClass(X,Y):
     tree = DecisionTreeClassifier(min_samples_leaf=5).fit(X,Y)
     return tree
 
 
 def logitridgecv(X,Y):
-    reg=LogisticRegressionCV(cv=5,penalty='l2',solver='saga').fit(X,Y)
-    # named ridge2 to distinguish it from the ridge regressor in sklearn.
-    return reg
+    fit=LogisticRegressionCV(cv=5,penalty='l2',solver='saga').fit(X,Y)
+    return fit
 
 def RFclass(X,Y):
     M =len(X[0])    # when bootstrap=False, it means each tree is trained on all rows of X and only
