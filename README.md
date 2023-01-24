@@ -3,7 +3,7 @@
 
 The LOCO-MP python package provide a mostly model-agnostic and distribution-free inference
 framework for feature importance that is applicable to both regression and classification tasks and is computationally efficient and statistically powerful. 
-The motivation for this method is described in Gan, L., Zheng, L., & Allen, G. I. (2022) [link to preprint](https://arxiv.org/abs/2206.02088). Please visit https://DataSlingers.github.io/LOCOMP_paper for code to reproduce the results from our paper.
+The motivation for this method is described in Gan, L., Zheng, L., & Allen, G. I. (2022) [link to preprint](https://arxiv.org/abs/2206.02088). Please visit https://github.com/DataSlingers/LOCOMP_paperfor code to reproduce the results from our paper.
 
  
 
