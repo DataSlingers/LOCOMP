@@ -1,0 +1,12 @@
+setup.py
+LOCOMP.egg-info/PKG-INFO
+LOCOMP.egg-info/SOURCES.txt
+LOCOMP.egg-info/dependency_links.txt
+LOCOMP.egg-info/requires.txt
+LOCOMP.egg-info/top_level.txt
+locomp/MLmodels.py
+locomp/__init__.py
+locomp/_loco_classification.py
+locomp/_loco_regression.py
+locomp/_version.py
+locomp/util_locomp.py
