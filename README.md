@@ -21,7 +21,7 @@ Clone this repo and run
 
 ## Base estimator requirement 
 
-The LOCO-MP function requires base estimator functions which takes arguments (training data matrix X, training response Y, testing data matrix X1) as input and predictions of X1 as output for regression; (training data matrix X, training response Y) as as input and fitted model as output for classification. Users can import base estimators including ridge, random forest and support vector machine from MLmodels. Examples: 
+The LOCO-MP function requires base estimator functions which takes arguments (training data matrix X, training response Y, testing data matrix X1) as input and predictions of X1 as output for regression; (training data matrix X, training response Y) as as input and fitted model as output for classification. Users can import base estimators including ridge, random forest and support vector machine from ML_models. Examples: 
 
 ##### Ridge regression function:
 
