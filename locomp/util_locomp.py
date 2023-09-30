@@ -119,3 +119,20 @@ def ztest(z,alpha,MM=1,bonf_correct=True):
     right = m + q*s/np.sqrt(l)
     return [pval1,pval2, left,right]
 
+def ztest_adjust(z,alpha,var=0.00001,MM=1,bonf_correct=True):
+    l = len(z)
+    s = np.std(z)
+    m = np.mean(z)
+    pval1 = 1-norm.cdf(m/(s/np.sqrt(l)+var))
+
+    pval2 = 2*(1-norm.cdf(np.abs(m/s/np.sqrt(l)+var)))
+
+    # Apply Bonferroni correction for M tests
+    if bonf_correct:
+        pval1= min(MM*pval1,1)
+        pval2= min(MM*pval2,1)
+        alpha = alpha/MM
+    q = norm.ppf(1-alpha/2)
+    left  = m - q*(s/np.sqrt(l)+var)
+    right = m + q*(s/np.sqrt(l)+var)
+    return [pval1,pval2, left,right]

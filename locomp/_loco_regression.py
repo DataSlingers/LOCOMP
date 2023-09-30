@@ -5,7 +5,7 @@ from sklearn.model_selection import train_test_split
 import numpy.random as r
 from random import sample
 from joblib import Parallel, delayed
-from .util_locomp import buildMPReg,predictMPReg,ztest
+from .util_locomp import buildMPReg,predictMPReg,ztest,ztest_adjust
 
 class LOCOMPReg():
     """ 
@@ -80,7 +80,7 @@ class LOCOMPReg():
         def get_loco(i,j):
             b_keep_f = list(set(np.argwhere(~(self.in_mp_feature[:,j])).reshape(-1)) & set(np.argwhere(~(self.in_mp_obs[:,i])).reshape(-1)))
             return predictions[b_keep_f,i].mean()
-
+    
         if len(self.selected_features)==0:
             ff = list(range(M))
         else:
@@ -99,8 +99,13 @@ class LOCOMPReg():
         inf_z = np.zeros((len(ff),4))
         for idd,j in enumerate(ff): 
             inf_z[idd] = ztest(ress[ress.j==idd].zz,self.alpha,MM=len(ff),bonf_correct =self.bonf)
-
         ###########################
         self.loco_ci=inf_z
         self.info=ress
         self.diff=diff
+        
+    def correct_variance(self,eps,*args,**kwargs):
+        var = np.sqrt(np.mean(self.diff))*np.log(len(self.X))*self.n_ratio*eps
+        return ztest_adjust(self.info['zz'],self.alpha, var = var)
+            
+       

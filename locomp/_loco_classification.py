@@ -110,4 +110,8 @@ class LOCOMPClass():
         self.info=ress
         self.diff=diff
 
+    def correct_variance(self,eps,*args,**kwargs):
+        var = np.sqrt(np.mean(self.diff))*np.log(len(self.X))*self.n_ratio*eps
+        return ztest_adjust(self.info['zz'],self.alpha, var = var)
+            
 
